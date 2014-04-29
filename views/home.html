@@ -1,4 +1,35 @@
 <% include header.html %>
-<h1>Welcome <%= user.username %>, 欢迎登陆！！</h1>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="javascripts/chat.js"></script>
+<script type="text/javascript" src="javascripts/jquery-1.9.1.min.js"></script>
+
+
+
+<h1> <%= title %>, 欢迎光临！！</h1>
+
+<div id="contain">
+    <div id="content">
+      <div id="content_show">
+        <div id="contents"></div>
+      </div>
+      <div id="content_saying">
+        <div id="toolbar"></div>
+        <div id="input_content" contenteditable="true"></div>
+        <div id="sayingto">你好 <span id="from"></span> ，你正在对 <span id="to"></span> 说</div>
+        <div id="say">发送</div>
+      </div>
+    </div>
+    <div id="users_online">
+      <div id="usersbar">
+        <div id="user_label">在线用户</div>
+        <div id="users_list">
+          <ul id="list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <a claa="btn" href="/logout">退出</a>
 <% include footer.html %>

@@ -9,9 +9,14 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , ejs = require('ejs');
-
-
 var app = express();
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);//websocket
+
+io.socket.on('connection',function (socket){
+
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -22,6 +27,7 @@ app.set('view engine', 'html');//app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(express.cookieParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -30,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
 
 app.get('/', routes.index);
 
@@ -40,6 +47,7 @@ app.get('/home', routes.home);
 
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
