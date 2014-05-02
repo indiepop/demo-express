@@ -1,4 +1,47 @@
 <% include header.html %>
-<h1><%= title %></h1>
-<p><a href="/login">用户登陆</a></p>
+
+
+<script>
+
+  var socket = io.connect();
+
+/*
+  socket.on('news', function (data) { 
+    socket.emit('my other event', { my: 'data' });
+  });
+*/
+ 
+  socket.on('ready', function(nickname){
+    setServerMsg('Hi, '+nickname+ 'is online');
+  });
+
+  socket.on('chatMessage', function (data){
+    chatUpdate(data[0]+':'+data[1]);
+  });	
+
+
+</script>
+
+
+<h1 ><%= title %></h1>
+	<div>
+ 		<p id='serverMsg'> </p>
+ 	</div>
+
+    <div><textarea cols="300" rows="20" id="chat"> </textarea>
+    </div>
+
+    <div>
+    	<p>
+    		设置昵称：<input  type="text" id="nickname"></input>
+    		<button onclick="setMyName()">OK</button>
+    	</p>
+    </div>
+    	<p>
+    		我说：
+    		<input  type="text" id="chatMessage"></input>
+    	</p>
+    <p><button onclick = "chatSend()"> Send </button></p>
+      
+
 <% include footer.html %>

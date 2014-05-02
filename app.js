@@ -14,9 +14,7 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);//websocket
 
-io.socket.on('connection',function (socket){
 
-});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -40,14 +38,52 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
-app.get('/login', routes.login);
-app.post('/login', routes.doLogin);
-app.get('/logout', routes.logout);
-app.get('/home', routes.home);
+
 
 app.get('/users', user.list);
 
+var users= [];
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+
+io.sockets.on('connection', function (socket) {
+
+  console.log("Connection,the ID "+socket.id+" is accepted");
+  
+/* socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log("Second from server Josh:"+ data);
+  });
+*/ 
+  socket.on('message',function (message){
+    console.log("Received message: "+message+" __from"+socket.id);
+  });
+  
+  socket.on('disconnect',function(){
+    console.log("Connection "+ socket.id + "terminated.");
+  });
+
+//预定义事件
+
+  socket.on('setName', function (nickname){
+      socket.nickname = nickname;
+      users.push(nickname);
+      io.sockets.emit('ready',nickname);
+  
+  });
+
+  socket.on('msg', function (message){
+    console.log('I received a private message  saying ', message);
+      io.sockets.emit('chatMessage',[socket.nickname,message]);
+  });
+
+
+
+
+
+
+
 });
