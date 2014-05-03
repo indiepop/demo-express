@@ -20,7 +20,7 @@ function chatUpdate(text){
 
 
 function setServerMsg(text){
-	document.getElementById('serverMsg').innerHTML+=('<br>'+text);
+	document.getElementById('serverMsg').innerHTML +=('<br>'+text);
 };
 
 function logout(){
