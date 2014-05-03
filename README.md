@@ -17,7 +17,7 @@ nodejs,express3,websocket,socket.io,karma,jasmine,demo.
 
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image2.jpg)
 
->karma截图：
+>Karma截图：
 
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image3.jpg)
 
