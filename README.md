@@ -11,12 +11,14 @@ nodejs,express3,websocket,socket.io,karma,jasmine,demo.
 
 下面是一些截图：
 
->聊天截图
+>聊天截图：
+
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image1.jpg)
 
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image2.jpg)
 
->karma截图
+>karma截图：
+
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image3.jpg)
 
 ![Josh](https://raw.github.com/indiepop/demo-express/master/public/images/image4.jpg)
