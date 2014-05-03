@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container{width:500px}
+.header {background-color:#99bbbb;}
+.left { height:200px; width:400px; float:left;}
+.right { height:400px; width:400px; float:left;}
+.footer {background-color:#99bbbb; clear:both; text-align:center;}

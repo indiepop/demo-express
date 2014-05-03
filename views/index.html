@@ -12,36 +12,47 @@
 */
  
   socket.on('ready', function(nickname){
-    setServerMsg('Hi, '+nickname+ 'is online');
+    setServerMsg('Hi, '+nickname+ ' is online');
   });
 
   socket.on('chatMessage', function (data){
     chatUpdate(data[0]+':'+data[1]);
   });	
 
+  socket.on('offline', function (nickname){
+    setServerMsg('Oh!'+ nickname + ' is offline');
+  });
+
 
 </script>
 
 
-<h1 ><%= title %></h1>
-	<div>
- 		<p id='serverMsg'> </p>
- 	</div>
+<h1 class="head"><%= title %></h1>
 
-    <div><textarea cols="300" rows="20" id="chat"> </textarea>
+  <div class="left">
+    <div >
+        <textarea cols="30" rows="20" id="chat"> </textarea>
     </div>
-
-    <div>
+    <div id='setAName'>
     	<p>
     		设置昵称：<input  type="text" id="nickname"></input>
     		<button onclick="setMyName()">OK</button>
     	</p>
     </div>
+    <div id='speak' style="display:none">
     	<p>
     		我说：
-    		<input  type="text" id="chatMessage"></input>
-    	</p>
-    <p><button onclick = "chatSend()"> Send </button></p>
-      
+    		<input  type="text" id="chatMessage" onkeypress="if(event.keyCode==13) { btn.click();}"></input>
+        <button id='btn' onclick = "chatSend()"> Send </button>
+      </p>
+    </div>  
+  </div>
+    
+  <div class="right">
+        <p id='serverMsg'> </p>
+        <div id='logout' style="display:none">
+          <button onclick="logout()">logout</button>
+        </div>
+  </div>
 
 <% include footer.html %>

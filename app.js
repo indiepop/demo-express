@@ -14,7 +14,7 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);//websocket
 
-
+io.enable('sync disconnect on unload'); 
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -63,14 +63,16 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('disconnect',function(){
-    console.log("Connection "+ socket.id + "terminated.");
+    console.log("Connection "+ socket.id + socket.nickname+ "terminated."); 
+
+    io.sockets.emit('offline', socket.nickname);
   });
 
 //预定义事件
 
   socket.on('setName', function (nickname){
       socket.nickname = nickname;
-      users.push(nickname);
+ //     users.push(nickname);
       io.sockets.emit('ready',nickname);
   
   });

@@ -11,3 +11,16 @@ describe("Example Function",function(){
 		expect(3).toEqual(add(1,2));
 	})
 })
+
+describe("My test",function(){
+
+ it("The 'toMatch' matcher is for regular expressions", function() {
+    var message = "foo bar baz";
+
+    expect(message).toMatch(/bar/);
+    expect(message).toMatch("bar");
+    expect(message).not.toMatch(/quux/);
+  });
+
+	
+})
