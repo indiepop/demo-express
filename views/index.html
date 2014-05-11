@@ -12,6 +12,7 @@
 */
  
   socket.on('ready', function(nickname){
+    document.getElementById('online').innerHTML = "当前用户: "+nickname;
     setServerMsg('Hi, '+nickname+ ' is online');
   });
 
@@ -49,7 +50,8 @@
   </div>
     
   <div class="right">
-        <p id='serverMsg'> </p>
+        <p id='online'></p>
+        <p id='serverMsg'></p>
         <div id='logout' style="display:none">
           <button onclick="logout()">logout</button>
         </div>
